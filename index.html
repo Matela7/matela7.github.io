@@ -1,82 +1,458 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corgi Focus App</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            background-color: #1b1d22;
-            font-family: Arial, sans-serif;
-            color: white;
-        }
-        .container {
-            display: flex;
-            align-items: center;
-            max-width: 80%;
-        }
-        .text {
-            flex: 1;
-            margin-right: 20px;
-        }
-        .text h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        .text p {
-            font-size: 1.2em;
-            line-height: 1.5em;
-        }
-        .image {
-            flex: 1;
-            max-width: 100%;
-        }
-        .image img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        .download {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #ff6600;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 1.2em;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .download:hover {
-            background-color: #cc5200;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="text">
-            <h1>BIG CORGI IS WATCHING!</h1>
-            <p>Stop procrastination with CORGI!</p>
-            <p>Who controls the past controls the future.</p>
-            <p>Who controls the present controls the past.</p>
-            <p>War is peace.</p>
-            <p>Freedom is slavery.</p>
-            <p>Ignorance is strength.</p>
-        </div>
-        <div class="image">
-            <img src="obraz.jpg" alt="Corgi is watching">
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#090c0b" />
+    <meta
+      name="description"
+      content="Platon — a local AI workspace for understanding your documents, researching ideas, and creating with a team of specialist agents."
+    />
+    <title>Platon — A clearer view of your documents</title>
+    <link rel="icon" href="assets/icon.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+    <script src="background.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient-background" aria-hidden="true">
+      <div class="ambient-grid"></div>
+      <canvas id="ambient-canvas"></canvas>
     </div>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+    <header class="site-header wrap">
+      <a class="brand" href="#" aria-label="Platon"
+        ><img src="assets/icon.png" width="42" height="42" alt="" /><span
+          >platon<span class="brand-dot">.</span></span
+        ></a
+      >
+      <nav aria-label="Main navigation" data-i18n-aria="nav">
+        <a href="#project" data-i18n="navProject">The project</a>
+        <a href="#download" data-i18n="navDownload">Download</a>
+        <a
+          class="repo-link"
+          href="https://github.com/Matela7/platon"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub <span aria-hidden="true">↗</span></a
+        >
+        <a
+          class="repo-link linkedin-link"
+          href="https://pl.linkedin.com/in/matela7"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+      <div class="language-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button
+        ><button type="button" data-lang="pl" aria-pressed="false">PL</button>
+      </div>
+    </header>
 
-    <!-- Przycisk do pobrania pliku -->
-    <a href="https://drive.google.com/file/d/164hzawi1aZEdqxHrQNm4mFYynQ6P_MEY/view" class="download" download>Download App</a>
-</body>
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="status-dot"></span
+            ><span data-i18n="eyebrow">LOCAL MODELS. BIG IDEAS.</span>
+          </div>
+          <h1 id="hero-title">
+            <span data-i18n="heroLine1">Your documents.</span><br /><em
+              data-i18n="heroLine2"
+              >A clearer view.</em
+            >
+          </h1>
+          <p class="hero-description" data-i18n="heroDescription">
+            Meet Platon. A local AI workspace that turns your documents into
+            answers, connects ideas, and brings a small team of agents to your
+            next question.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#download"
+              ><span data-i18n="heroCta">Find your version</span
+              ><span aria-hidden="true">↓</span></a
+            ><a
+              class="text-link"
+              href="https://github.com/Matela7/platon"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span data-i18n="heroCode">Explore the code</span
+              ><span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <p class="hero-note">
+            <span class="tiny-systems" aria-hidden="true"
+              >⌘ &nbsp; ⊞ &nbsp; >_</span
+            ><span data-i18n="heroNote">A desktop home for your local AI.</span>
+          </p>
+        </div>
+
+        <div class="preview-area">
+          <div class="preview-caption">
+            <span class="mini-label" data-i18n="previewLabel"
+              >A LOOK INSIDE</span
+            ><span class="preview-label" data-i18n="illustration"
+              >Illustrative conversation</span
+            >
+          </div>
+          <div class="app-preview">
+            <div class="preview-topbar">
+              <div class="window-dots" aria-hidden="true">
+                <i></i><i></i><i></i>
+              </div>
+              <span>platon / workspace</span
+              ><span class="local-badge"
+                ><span class="status-dot"></span
+                ><span data-i18n="local">local</span></span
+              >
+            </div>
+            <div class="preview-body">
+              <aside class="preview-sidebar" aria-hidden="true">
+                <span class="sidebar-mark">p.</span
+                ><span class="sidebar-item active">✦</span
+                ><span class="sidebar-item">▤</span
+                ><span class="sidebar-item">⌘</span
+                ><span class="sidebar-bottom">◐</span>
+              </aside>
+              <div class="conversation">
+                <div class="conversation-heading">
+                  <span data-i18n="workspace">Your workspace</span
+                  ><span>↗</span>
+                </div>
+                <div
+                  class="demo-tabs"
+                  role="group"
+                  aria-label="Preview examples"
+                  data-i18n-aria="examples"
+                >
+                  <button
+                    type="button"
+                    data-demo="documents"
+                    aria-pressed="true"
+                    data-i18n="tabDocuments"
+                  >
+                    Understand</button
+                  ><button
+                    type="button"
+                    data-demo="research"
+                    aria-pressed="false"
+                    data-i18n="tabResearch"
+                  >
+                    Research</button
+                  ><button
+                    type="button"
+                    data-demo="create"
+                    aria-pressed="false"
+                    data-i18n="tabCreate"
+                  >
+                    Create
+                  </button>
+                </div>
+                <div class="demo-content" aria-live="polite" aria-atomic="true">
+                  <p class="user-message" id="demo-question"></p>
+                  <div class="agent-identity">
+                    <span class="agent-spark" aria-hidden="true">✦</span
+                    ><strong>Platon</strong
+                    ><span class="agent-role" id="demo-role"></span>
+                  </div>
+                  <p class="agent-answer" id="demo-answer"></p>
+                  <div class="evidence" id="demo-evidence"></div>
+                </div>
+                <div class="preview-composer">
+                  <span data-i18n="composer">Where shall we begin?</span
+                  ><span class="send-icon" aria-hidden="true">↑</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="corgi-note">
+            <picture
+              ><source
+                media="(prefers-reduced-motion: reduce)"
+                srcset="assets/corgi-still.png" />
+              <img
+                id="hero-corgi"
+                src="assets/corgi-waving.gif"
+                width="96"
+                height="104"
+                alt="Pixel Corgi, the Platon companion"
+                data-i18n-alt="corgiAlt"
+            /></picture>
+            <div>
+              <span class="handwritten" data-i18n="corgiHello"
+                >A little company for big questions.</span
+              ><span class="corgi-name"
+                >PIXEL CORGI ·
+                <span data-i18n="corgiName">YOUR DESK COMPANION</span></span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="stack-strip wrap">
+        <span class="mini-label" data-i18n="stackLabel"
+          >BUILT ON GOOD FOUNDATIONS</span
+        >
+        <div>
+          <span>Ollama</span><i> / </i><span>LangGraph</span><i> / </i
+          ><span>ChromaDB</span><i> / </i><span>Electron</span>
+        </div>
+      </div>
+
+      <section
+        class="project-section wrap"
+        id="project"
+        aria-labelledby="project-title"
+      >
+        <div class="section-intro">
+          <span class="eyebrow" data-i18n="projectEyebrow"
+            >LESS SEARCHING. MORE UNDERSTANDING.</span
+          >
+          <h2 id="project-title" data-i18n="projectTitle">
+            A small team.<br />A shared train of thought.
+          </h2>
+          <p data-i18n="projectIntro">
+            You ask the question. Platon finds the right way forward — a direct
+            answer, a passage in your files, or a specialist with the tools to
+            help.
+          </p>
+        </div>
+        <div class="feature-list">
+          <article class="feature-row">
+            <span class="feature-number">01 /</span>
+            <div>
+              <h3 data-i18n="feature1Title">
+                Put your documents in conversation.
+              </h3>
+              <p data-i18n="feature1Text">
+                Search, compare, and summarise PDF, DOCX, and text collections.
+                Semantic retrieval brings relevant passages into the answer,
+                with document and page references.
+              </p>
+              <div class="file-types">
+                <span>PDF</span><span>DOCX</span><span>TXT</span
+                ><span class="rag-tag">RAG</span>
+              </div>
+            </div>
+          </article>
+          <article class="feature-row">
+            <span class="feature-number">02 /</span>
+            <div>
+              <h3 data-i18n="feature2Title">
+                Different minds for different tasks.
+              </h3>
+              <p data-i18n="feature2Text">
+                A supervisor coordinates document, research, and coding agents.
+                Find public information, work with local files, and review
+                actions before they happen.
+              </p>
+              <div class="agent-tags">
+                <span data-i18n="tagDocuments">Documents</span
+                ><span data-i18n="tagResearch">Research</span
+                ><span data-i18n="tagCode">Code & files</span>
+              </div>
+            </div>
+          </article>
+          <article class="feature-row">
+            <span class="feature-number">03 /</span>
+            <div>
+              <h3 data-i18n="feature3Title">Your machine. Your workspace.</h3>
+              <p data-i18n="feature3Text">
+                Ollama runs the language models locally. Conversations,
+                collections, and agent memory stay on your machine. External
+                research and optional integrations use their respective online
+                services.
+              </p>
+              <a
+                class="inline-link"
+                href="https://github.com/Matela7/platon#architecture"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span data-i18n="architecture">Meet the architecture</span>
+                ↗</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="download-section"
+        id="download"
+        aria-labelledby="download-title"
+      >
+        <div class="wrap">
+          <div class="download-heading">
+            <div>
+              <span class="eyebrow" data-i18n="downloadEyebrow"
+                >MAKE YOURSELF AT HOME</span
+              >
+              <h2 id="download-title" data-i18n="downloadTitle">
+                A place on your desktop.
+              </h2>
+            </div>
+            <div class="release-status" role="status">
+              <span class="status-dot"></span
+              ><span id="release-status" data-i18n="releaseLoading"
+                >Checking the latest release…</span
+              >
+            </div>
+          </div>
+          <div class="download-grid">
+            <article class="download-card">
+              <span class="platform-symbol windows-symbol" aria-hidden="true"
+                ><i></i><i></i><i></i><i></i
+              ></span>
+              <h3>Windows</h3>
+              <p data-i18n="windowsDescription">
+                x64 · Bundled Python<br />Image generation with NVIDIA / CUDA
+              </p>
+              <a
+                id="download-windows"
+                class="button download-button"
+                href="https://github.com/Matela7/platon/releases"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span data-download-label data-i18n="viewReleases"
+                  >View releases</span
+                ><span aria-hidden="true">↗</span></a
+              ><span
+                class="download-detail"
+                data-download-detail
+                data-i18n="windowsDetail"
+                >NSIS installer · .exe</span
+              >
+            </article>
+            <article class="download-card">
+              <span class="platform-symbol mac-symbol" aria-hidden="true"
+                >⌘</span
+              >
+              <h3>macOS</h3>
+              <p data-i18n="macosDescription">
+                Apple Silicon · macOS 15+<br />Local chat, documents, and agents
+              </p>
+              <a
+                id="download-macos"
+                class="button download-button"
+                href="https://github.com/Matela7/platon/releases"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span data-download-label data-i18n="viewReleases"
+                  >View releases</span
+                ><span aria-hidden="true">↗</span></a
+              ><span
+                class="download-detail"
+                data-download-detail
+                data-i18n="macosDetail"
+                >Disk image · .dmg</span
+              >
+            </article>
+            <article class="download-card">
+              <span class="platform-symbol linux-symbol" aria-hidden="true"
+                >&gt;_</span
+              >
+              <h3>Linux</h3>
+              <p data-i18n="linuxDescription">
+                x64 · glibc 2.35+<br />Local chat, documents, and agents
+              </p>
+              <a
+                id="download-linux"
+                class="button download-button"
+                href="https://github.com/Matela7/platon/releases"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span data-download-label data-i18n="viewReleases"
+                  >View releases</span
+                ><span aria-hidden="true">↗</span></a
+              ><span
+                class="download-detail"
+                data-download-detail
+                data-i18n="linuxDetail"
+                >AppImage / Debian package</span
+              >
+            </article>
+          </div>
+          <p class="download-note" data-i18n="downloadNote">
+            First launch prepares Ollama and downloads both Gemma models.
+            Windows also prepares the image generator. Allow internet access and
+            plenty of disk space for model downloads.
+          </p>
+          <a
+            class="inline-link release-link"
+            href="https://github.com/Matela7/platon/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span data-i18n="allReleases">All releases & release notes</span>
+            ↗</a
+          >
+        </div>
+      </section>
+
+      <section class="closing wrap">
+        <div class="closing-copy">
+          <span class="eyebrow" data-i18n="closingEyebrow"
+            >A PROJECT IN PROGRESS</span
+          >
+          <h2 data-i18n="closingTitle">
+            Curiosity is a good<br />place to start.
+          </h2>
+          <p data-i18n="closingText">
+            Platon is an engineering project exploring local language models,
+            document retrieval, and agent collaboration. Follow its development,
+            read the code, or bring a new idea to the discussion.
+          </p>
+          <a
+            class="text-link"
+            href="https://github.com/Matela7/platon"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span data-i18n="closingCta">Take a look on GitHub</span> ↗</a
+          >
+        </div>
+        <div class="companion-scene">
+          <span class="scene-caption">/ pixel-corgi</span>
+          <div class="scene-line"></div>
+          <picture
+            ><source
+              media="(prefers-reduced-motion: reduce)"
+              srcset="assets/corgi-still.png" />
+            <img
+              src="assets/corgi-idle.gif"
+              width="192"
+              height="208"
+              alt="Pixel Corgi"
+              loading="lazy" /></picture
+          ><span class="scene-comment" data-i18n="sceneComment"
+            >Ready when you are.</span
+          >
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer wrap">
+      <a class="brand footer-brand" href="#"
+        >platon<span class="brand-dot">.</span></a
+      ><span data-i18n="footer"
+        >Local intelligence. A little more personal.</span
+      >
+      <div class="footer-links">
+        <a
+          href="https://github.com/Matela7/platon/releases"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Releases ↗</a
+        >
+      </div>
+    </footer>
+    <noscript
+      ><p class="noscript-note">
+        JavaScript enables Polish/English switching and direct installer links.
+        You can still
+        <a href="https://github.com/Matela7/platon/releases"
+          >download published releases on GitHub</a
+        >.
+      </p></noscript
+    >
+  </body>
 </html>
